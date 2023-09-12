@@ -5,8 +5,10 @@ import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
+import javax.persistence.TypedQuery;
 
 import dto.DTOCareerByStudents;
+import dto.DTOStudent;
 import repositories.CareerRepository;
 import tables.Career;
 import tables.Student;
@@ -55,14 +57,6 @@ private EntityManager em;
 
 	}
 
-	//FALTA ARMAR LOS DTO EN LA LISTA QUE SE RETORNA
-	//	public List<DTOCareerByStudents> getCareersByNumberOfStudents() {
-	/*
-		final var jpql = "SELECT c.name, COUNT(*) FROM StudentHistory s JOIN s.career c  GROUP BY c ORDER BY COUNT(c) DESC ";
-		List<DTOCareerByStudents> result = carres.stream()
-			    .map((DTOCareerByStudents c) -> new DTOCareerByStudents())
-			    .collect(Collectors.toList());	
-*/
 	@Override
 	public List<DTOCareerByStudents> getCareersByNumberOfStudents() {
 		try {
@@ -109,14 +103,15 @@ private EntityManager em;
 	
 	//RECUPERAR ESTUDIANTES POR CIUDAD SEGÚN CARRERA
 	@Override
-	public List<Student> getStudentsByCareerCity(Career car) {
+	public List<DTOStudent> getStudentsByCareerCity(Career car) {
 		try {
 			em.getTransaction().begin();
-			String jpql = "SELECT s FROM StudentHistory sh JOIN sh.student s WHERE sh.career = ?1 ORDER BY s.residenceCity";
-			Query query = em.createQuery(jpql);
+			//String jpql = "SELECT s FROM StudentHistory sh JOIN sh.student s WHERE sh.career = ?1 ORDER BY s.residenceCity";
+			//String jpql = "SELECT new dto.DTOStudent(CONCAT(s.names, ' ', s.lastname), s.age, s.numberOfLibrety) FROM StudentHistory sh JOIN sh.student s WHERE sh.career.idCareer = ?1 ORDER BY s.residenceCity";
+			String jpql = "SELECT new dto.DTOStudent(CONCAT(s.names, ' ', s.lastname), s.age, s.numberOfLibrety) FROM Student s JOIN s.careers c WHERE c.career = ?1 ORDER BY s.residenceCity";
+			TypedQuery<DTOStudent> query = em.createQuery(jpql, DTOStudent.class);
 			query.setParameter(1, car);
-			@SuppressWarnings("unchecked")
-			List<Student> stus = query.getResultList();
+			List<DTOStudent> stus = query.getResultList();
 			em.getTransaction().commit();
 			return stus;
 		} catch (Exception e) {

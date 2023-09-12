@@ -3,8 +3,9 @@ package implementsRepository;
 import java.util.List;
 
 import javax.persistence.EntityManager;
-import javax.persistence.Query;
+import javax.persistence.TypedQuery;
 
+import dto.DTOStudent;
 import repositories.StudentRepository;
 import tables.Student;
 
@@ -34,13 +35,13 @@ public class StudentRepositoryImpl implements StudentRepository {
 
 	//RECUPERAR UN ESTUDIANTE POR NÚMERO DE LIBRETA UNIVERSITARIA
 	@Override
-	public Student getStudentByNumberOfLibrety(long number) {
+	public DTOStudent getStudentByNumberOfLibrety(long number) {
 		try {
 			em.getTransaction().begin();
-			String jpql = "SELECT s FROM Student s WHERE s.numberOfLibrety = ?1";
-			Query query = em.createQuery(jpql);
+			String jpql = "SELECT new dto.DTOStudent(CONCAT(s.names, ' ', s.lastname), s.age, s.numberOfLibrety) FROM Student s WHERE s.numberOfLibrety = ?1";
+			TypedQuery<DTOStudent> query = em.createQuery(jpql, DTOStudent.class);
 			query.setParameter(1, number);
-			Student stu = (Student) query.getSingleResult();
+			DTOStudent stu = query.getSingleResult();
 			em.getTransaction().commit();
 			return stu;
 		} catch (Exception e) {
@@ -51,13 +52,12 @@ public class StudentRepositoryImpl implements StudentRepository {
 
 	//RECUPERAR TODOS LOS ESTUDIANTES Y ESTABLECER UN CRITERIO DE ORDENAMIENTO SIMPLE (LASTNAME)
 	@Override
-	public List<Student> getStudentsBySimpleOrdering() {
+	public List<DTOStudent> getStudentsBySimpleOrdering() {
 		try {
 			em.getTransaction().begin();
-			String jpql = "SELECT s FROM Student s ORDER BY s.lastname";
-			Query query = em.createQuery(jpql);
-			@SuppressWarnings("unchecked")
-			List<Student> stus = query.getResultList();
+			String jpql = "SELECT new dto.DTOStudent(CONCAT(s.names, ' ', s.lastname), s.age, s.numberOfLibrety) FROM Student s ORDER BY s.lastname";
+			TypedQuery<DTOStudent> query = em.createQuery(jpql, DTOStudent.class);
+			List<DTOStudent> stus = query.getResultList();
 			em.getTransaction().commit();
 			return stus;
 		} catch (Exception e) {
@@ -67,14 +67,13 @@ public class StudentRepositoryImpl implements StudentRepository {
 	}
 
 	@Override
-	public List<Student> getStudentsByGenre(String genre) {
+	public List<DTOStudent> getStudentsByGenre(String genre) {
 		try {
 			em.getTransaction().begin();
-			String jpql = "SELECT s FROM Student s WHERE s.genre = ?1";
-			Query query = em.createQuery(jpql);
+			String jpql = "SELECT new dto.DTOStudent(CONCAT(s.names, ' ', s.lastname), s.age, s.numberOfLibrety) FROM Student s WHERE s.genre = ?1";
+			TypedQuery<DTOStudent> query = em.createQuery(jpql, DTOStudent.class);
 			query.setParameter(1, genre);
-			@SuppressWarnings("unchecked")
-			List<Student> stus = query.getResultList();
+			List<DTOStudent> stus = query.getResultList();
 			em.getTransaction().commit();
 			return stus;
 		} catch (Exception e) {

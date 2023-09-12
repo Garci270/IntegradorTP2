@@ -2,11 +2,17 @@ package dto;
 
 public class DTOCareerByStudents {
 	private String name;
-	private int amountStudents;
+	private long amountStudents;
 	
 	
 	public DTOCareerByStudents() {
 		super();		
+	}
+	
+	public DTOCareerByStudents(String name, long amountStudents) {
+		super();
+		this.name = name;
+		this.amountStudents = amountStudents;
 	}
 
 
@@ -20,26 +26,21 @@ public class DTOCareerByStudents {
 	}
 
 
-	public int getAmountStudents() {
+	public long getAmountStudents() {
 		return amountStudents;
 	}
 
 
-	public void setAmountStudents(int amountStudents) {
-		this.amountStudents = amountStudents;
-	}
-
-
-	public DTOCareerByStudents(String name, int amountStudents) {
-		super();
-		this.name = name;
+	public void setAmountStudents(long amountStudents) {
 		this.amountStudents = amountStudents;
 	}
 
 
 	@Override
 	public String toString() {
-		return "Career=" + name + ", amountStudents=" + amountStudents + "]";
+		return "\nCareer: "+this.name+
+				"\nNumber of students: "+this.amountStudents+
+				"\n---";
 	}
 	
 

@@ -67,7 +67,12 @@ private EntityManager em;
 	public List<DTOCareerByStudents> getCareersByNumberOfStudents() {
 		try {
 			em.getTransaction().begin();
-			String jpql = "SELECT c FROM StudentHistory s JOIN s.career c  GROUP BY c ORDER BY COUNT(c) DESC ";
+			String jpql = "SELECT new dto.DTOCareerByStudents(c.name, COUNT(c.name))"
+					+ " FROM Career c"
+					+ " JOIN c.students s"
+					+ " GROUP BY c.name"
+					+ " HAVING COUNT(c.name) > 0"
+					+ " ORDER BY COUNT(c.name) DESC";
 			Query query = em.createQuery(jpql);
 			@SuppressWarnings("unchecked")
 			List<DTOCareerByStudents> carres = query.getResultList();

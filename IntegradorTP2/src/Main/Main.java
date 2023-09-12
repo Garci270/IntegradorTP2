@@ -46,7 +46,6 @@ public class Main {
 		System.out.println("RECUPERAR TODOS LOS ESTUDIANTES EN BASE A SU GÉNERO");
 		System.out.println(stuImpl.getStudentsByGenre("Male"));
 		
-		//ESTE HAY QUE TERMINAR DE AJUSTAR
 		System.out.println("RECUPERAR LAS CARRERAS CON INSCRIPTOS Y ORDENAR POR CANTIDAD DE INSCRIPTOS");
 		System.out.println(carImpl.getCareersByNumberOfStudents());
 		

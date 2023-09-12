@@ -16,6 +16,7 @@ public class StudentRepositoryImpl implements StudentRepository {
 		this.em = em;
 	}
 
+	//DAR DE ALTA UN ESTUDIANTE
 	@Override
 	public void insertStudent(Student student) {
 		try {
@@ -31,6 +32,7 @@ public class StudentRepositoryImpl implements StudentRepository {
 		}
 	}
 
+	//RECUPERAR UN ESTUDIANTE POR NÚMERO DE LIBRETA UNIVERSITARIA
 	@Override
 	public Student getStudentByNumberOfLibrety(long number) {
 		try {
@@ -47,6 +49,7 @@ public class StudentRepositoryImpl implements StudentRepository {
 		return null;
 	}
 
+	//RECUPERAR TODOS LOS ESTUDIANTES Y ESTABLECER UN CRITERIO DE ORDENAMIENTO SIMPLE (LASTNAME)
 	@Override
 	public List<Student> getStudentsBySimpleOrdering() {
 		try {

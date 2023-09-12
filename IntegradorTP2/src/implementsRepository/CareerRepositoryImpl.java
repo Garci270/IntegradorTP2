@@ -6,6 +6,7 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
 
+import dto.DTOCareerByStudents;
 import repositories.CareerRepository;
 import tables.Career;
 import tables.Student;
@@ -54,14 +55,22 @@ private EntityManager em;
 
 	}
 
+	//FALTA ARMAR LOS DTO EN LA LISTA QUE SE RETORNA
+	//	public List<DTOCareerByStudents> getCareersByNumberOfStudents() {
+	/*
+		final var jpql = "SELECT c.name, COUNT(*) FROM StudentHistory s JOIN s.career c  GROUP BY c ORDER BY COUNT(c) DESC ";
+		List<DTOCareerByStudents> result = carres.stream()
+			    .map((DTOCareerByStudents c) -> new DTOCareerByStudents())
+			    .collect(Collectors.toList());	
+*/
 	@Override
-	public List<Career> getCareersByNumberOfStudents() {
+	public List<DTOCareerByStudents> getCareersByNumberOfStudents() {
 		try {
 			em.getTransaction().begin();
 			String jpql = "SELECT c FROM StudentHistory s JOIN s.career c  GROUP BY c ORDER BY COUNT(c) DESC ";
 			Query query = em.createQuery(jpql);
 			@SuppressWarnings("unchecked")
-			List<Career> carres = query.getResultList();
+			List<DTOCareerByStudents> carres = query.getResultList();
 			em.getTransaction().commit();
 			return carres;
 		} catch (Exception e) {
@@ -93,6 +102,7 @@ private EntityManager em;
 		
 	}
 	
+	//RECUPERAR ESTUDIANTES POR CIUDAD SEGÚN CARRERA
 	@Override
 	public List<Student> getStudentsByCareerCity(Career car) {
 		try {

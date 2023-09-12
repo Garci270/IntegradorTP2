@@ -6,7 +6,6 @@ import javax.persistence.EntityManager;
 import javax.persistence.Query;
 
 import repositories.StudentRepository;
-import tables.Career;
 import tables.Student;
 
 public class StudentRepositoryImpl implements StudentRepository {

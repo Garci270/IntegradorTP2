@@ -4,7 +4,6 @@ import java.util.List;
 
 import tables.Career;
 import tables.Student;
-import tables.StudentHistory;
 
 public interface CareerRepository {
 	

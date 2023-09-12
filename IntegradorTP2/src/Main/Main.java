@@ -1,4 +1,4 @@
-package tables;
+package Main;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -6,6 +6,8 @@ import javax.persistence.Persistence;
 
 import implementsRepository.CareerRepositoryImpl;
 import implementsRepository.StudentRepositoryImpl;
+import tables.Career;
+import tables.Student;
 
 public class Main {
 
@@ -18,13 +20,22 @@ public class Main {
 		Student s4 = new Student(4,"Juan", "Martinez", 26, "Male", 54215614,3214, "Bragado");
 		Student s5 = new Student(5,"Martin", "Gimenez", 20, "Male", 5423156,3156, "Loberia");
 		StudentRepositoryImpl stuImpl= new StudentRepositoryImpl(em);
-		stuImpl.insertStudent(s5);	
+		//stuImpl.insertStudent(s1);
+		//stuImpl.insertStudent(s2);
+		//stuImpl.insertStudent(s3);
+		//stuImpl.insertStudent(s4);
+		//stuImpl.insertStudent(s5);	
 		Career c1 = new Career(1,"Tudai");
 		Career c2 = new Career(2,"Sistemas");
 		CareerRepositoryImpl carImpl = new CareerRepositoryImpl(em);
-		carImpl.insertCareer(c2);
-		carImpl.insertStudentToCareer(c1, s5);
+		//carImpl.insertCareer(c1);
+		//carImpl.insertCareer(c2);
+		//carImpl.insertStudentToCareer(c1, s5);
+		//carImpl.insertStudentToCareer(c2, s4);
+		
+		
 		carImpl.getReportOfCareers();
+		
 		System.out.println(stuImpl.getStudentsBySimpleOrdering());
 		em.close();
 		emf.close();

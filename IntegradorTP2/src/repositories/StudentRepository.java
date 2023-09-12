@@ -2,7 +2,6 @@ package repositories;
 
 import java.util.List;
 
-import tables.Career;
 import tables.Student;
 
 public interface StudentRepository {

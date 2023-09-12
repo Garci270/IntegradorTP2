@@ -111,9 +111,10 @@ public class Student {
 		return "\nName: "+this.names+
 				"\nLastname: "+this.lastname+
 				"\nAge: "+this.age+
-				"\nGenre: "+this.dni+
+				"\nGenre: "+this.genre+
 				"\nLibrety of student: "+this.numberOfLibrety+
-				"\nResidence city: "+this.residenceCity;
+				"\nResidence city: "+this.residenceCity+
+				"\n---";
 	}
 	
 }

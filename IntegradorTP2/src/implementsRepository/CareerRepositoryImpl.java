@@ -9,6 +9,7 @@ import javax.persistence.TypedQuery;
 
 import dto.DTOCareerByStudents;
 import dto.DTOStudent;
+import dto.DTOStudentReport;
 import repositories.CareerRepository;
 import tables.Career;
 import tables.Student;
@@ -88,10 +89,11 @@ private EntityManager em;
 			List<Career> career = query.getResultList();
 			for (Career c : career) {
 				System.out.println(c);
-				jpql = "SELECT s FROM StudentHistory sr JOIN sr.student s WHERE sr.career.idCareer = ?1 ORDER BY sr.egressDate";
+				//jpql = "SELECT s FROM StudentHistory sr JOIN sr.student s WHERE sr.career.idCareer = ?1 ORDER BY sr.egressDate";
+				jpql = "SELECT new dto.DTOStudentReport(CONCAT(s.names, ' ', s.lastname), s.numberOfLibrety, sr.inscriptionDate, sr.egressDate) FROM StudentHistory sr JOIN sr.student s WHERE sr.career.idCareer = ?1 ORDER BY sr.egressDate";
 				query = em.createQuery(jpql);
 				query.setParameter(1, c.getIdCareer());
-				List<Student> students = query.getResultList();
+				List<DTOStudentReport> students = query.getResultList();
 				students.forEach(s -> System.out.println(s));
 			}
 			em.getTransaction().commit();

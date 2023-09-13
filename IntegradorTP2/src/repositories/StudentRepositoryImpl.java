@@ -1,4 +1,4 @@
-package implementsRepository;
+package repositories;
 
 import java.util.List;
 
@@ -6,8 +6,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
 
 import dto.DTOStudent;
-import repositories.StudentRepository;
-import tables.Student;
+import entity.Student;
 
 public class StudentRepositoryImpl implements StudentRepository {
 	

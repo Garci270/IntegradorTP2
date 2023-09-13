@@ -3,7 +3,7 @@ package repositories;
 import java.util.List;
 
 import dto.DTOStudent;
-import tables.Student;
+import entity.Student;
 
 public interface StudentRepository {
 	

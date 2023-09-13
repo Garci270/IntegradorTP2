@@ -1,4 +1,4 @@
-package implementsRepository;
+package repositories;
 
 import java.sql.Date;
 import java.util.List;
@@ -10,16 +10,16 @@ import javax.persistence.TypedQuery;
 import dto.DTOCareerByStudents;
 import dto.DTOStudent;
 import dto.DTOStudentReport;
-import repositories.CareerRepository;
-import tables.Career;
-import tables.Student;
-import tables.StudentHistory;
+import entity.Career;
+import entity.Student;
+import entity.StudentHistory;
 
 public class CareerRepositoryImpl implements CareerRepository {
 	
 private EntityManager em;
 	
 	public CareerRepositoryImpl(EntityManager em) {
+		//crear em en constructor y no cerrar conexión
 		this.em = em;
 	}
 

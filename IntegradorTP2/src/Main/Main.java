@@ -4,10 +4,10 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
-import implementsRepository.CareerRepositoryImpl;
-import implementsRepository.StudentRepositoryImpl;
-import tables.Career;
-import tables.Student;
+import entity.Career;
+import entity.Student;
+import repositories.CareerRepositoryImpl;
+import repositories.StudentRepositoryImpl;
 
 public class Main {
 
@@ -55,9 +55,7 @@ public class Main {
 		System.out.println("RECUPERAR ESTUDIANTES POR CIUDAD SEGÚN CARRERA");
 		carImpl.getStudentsByCareerCity(c2);
 		
-		
-		em.close();
-		emf.close();
+
 
 	}
 

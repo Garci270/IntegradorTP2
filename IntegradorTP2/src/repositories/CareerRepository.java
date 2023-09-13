@@ -4,8 +4,8 @@ import java.util.List;
 
 import dto.DTOCareerByStudents;
 import dto.DTOStudent;
-import tables.Career;
-import tables.Student;
+import entity.Career;
+import entity.Student;
 
 public interface CareerRepository {
 	

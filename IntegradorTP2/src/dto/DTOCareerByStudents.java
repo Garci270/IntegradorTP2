@@ -38,9 +38,7 @@ public class DTOCareerByStudents {
 
 	@Override
 	public String toString() {
-		return "\nCareer: "+this.name+
-				"\nNumber of students: "+this.amountStudents+
-				"\n---";
+		return "\n Career: "+this.name+ ", Number of students: "+this.amountStudents;
 	}
 	
 

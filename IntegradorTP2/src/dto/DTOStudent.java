@@ -4,15 +4,17 @@ public class DTOStudent {
 	private String fullname;
 	private int age;
 	private long numberOfLibrety;
+	private String city;
 	
 	public DTOStudent() {
 		
 	}
 	
-	public DTOStudent(String fullname, int age, long numberOfLibrety) {
+	public DTOStudent(String fullname, int age, long numberOfLibrety, String city) {
 		this.fullname = fullname;
 		this.age = age;
 		this.numberOfLibrety = numberOfLibrety;
+		this.city = city;
 	}
 
 	public String getFullname() {
@@ -39,11 +41,20 @@ public class DTOStudent {
 		this.numberOfLibrety = numberOfLibrety;
 	}
 
+	
+	public String getCity() {
+		return city;
+	}
+
+	public void setCity(String city) {
+		this.city = city;
+	}
+
 	@Override
 	public String toString() {
-		return "\nFullname: "+this.fullname+
-				"\nAge:"+this.age+
-				"\nNumber of librety: "+this.numberOfLibrety+
-				"\n---";
+		return "\n [Fullname: "+this.fullname+
+				", Age:"+this.age+
+				", Number of librety: "+this.numberOfLibrety +
+				", City:"+this.city+"]";
 	}
 }

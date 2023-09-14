@@ -8,25 +8,26 @@ import javax.persistence.Persistence;
 import javax.persistence.TypedQuery;
 
 import dto.DTOStudent;
+import entity.Career;
 import entity.Student;
 
 public class StudentRepositoryImpl implements StudentRepository {
-	
+
 	private EntityManager em;
-	
+
 	public StudentRepositoryImpl() {
 		EntityManagerFactory emf = Persistence.createEntityManagerFactory("Arquitectura");
 		this.em = emf.createEntityManager();
 	}
 
-	//DAR DE ALTA UN ESTUDIANTE
+	// DAR DE ALTA UN ESTUDIANTE
 	@Override
 	public void insertStudent(Student student) {
 		try {
 			em.getTransaction().begin();
-			if(!em.contains(student)) {
+			if (!em.contains(student)) {
 				em.persist(student);
-			}else {
+			} else {
 				em.merge(student);
 			}
 			em.getTransaction().commit();
@@ -35,12 +36,12 @@ public class StudentRepositoryImpl implements StudentRepository {
 		}
 	}
 
-	//RECUPERAR UN ESTUDIANTE POR NÚMERO DE LIBRETA UNIVERSITARIA
+	// RECUPERAR UN ESTUDIANTE POR NÚMERO DE LIBRETA UNIVERSITARIA
 	@Override
 	public DTOStudent getStudentByNumberOfLibrety(long number) {
 		try {
 			em.getTransaction().begin();
-			String jpql = "SELECT new dto.DTOStudent(CONCAT(s.names, ' ', s.lastname), s.age, s.numberOfLibrety) FROM Student s WHERE s.numberOfLibrety = ?1";
+			String jpql = "SELECT new dto.DTOStudent(CONCAT(s.names, ' ', s.lastname), s.age, s.numberOfLibrety, s.residenceCity) FROM Student s WHERE s.numberOfLibrety = ?1";
 			TypedQuery<DTOStudent> query = em.createQuery(jpql, DTOStudent.class);
 			query.setParameter(1, number);
 			DTOStudent stu = query.getSingleResult();
@@ -52,12 +53,13 @@ public class StudentRepositoryImpl implements StudentRepository {
 		return null;
 	}
 
-	//RECUPERAR TODOS LOS ESTUDIANTES Y ESTABLECER UN CRITERIO DE ORDENAMIENTO SIMPLE (LASTNAME)
+	// RECUPERAR TODOS LOS ESTUDIANTES Y ESTABLECER UN CRITERIO DE ORDENAMIENTO
+	// SIMPLE (LASTNAME)
 	@Override
 	public List<DTOStudent> getStudentsBySimpleOrdering() {
 		try {
 			em.getTransaction().begin();
-			String jpql = "SELECT new dto.DTOStudent(CONCAT(s.names, ' ', s.lastname), s.age, s.numberOfLibrety) FROM Student s ORDER BY s.lastname";
+			String jpql = "SELECT new dto.DTOStudent(CONCAT(s.names, ' ', s.lastname), s.age, s.numberOfLibrety, s.residenceCity) FROM Student s ORDER BY s.lastname";
 			TypedQuery<DTOStudent> query = em.createQuery(jpql, DTOStudent.class);
 			List<DTOStudent> stus = query.getResultList();
 			em.getTransaction().commit();
@@ -72,9 +74,32 @@ public class StudentRepositoryImpl implements StudentRepository {
 	public List<DTOStudent> getStudentsByGenre(String genre) {
 		try {
 			em.getTransaction().begin();
-			String jpql = "SELECT new dto.DTOStudent(CONCAT(s.names, ' ', s.lastname), s.age, s.numberOfLibrety) FROM Student s WHERE s.genre = ?1";
+			String jpql = "SELECT new dto.DTOStudent(CONCAT(s.names, ' ', s.lastname), s.age, s.numberOfLibrety, s.residenceCity) FROM Student s WHERE s.genre = ?1";
 			TypedQuery<DTOStudent> query = em.createQuery(jpql, DTOStudent.class);
 			query.setParameter(1, genre);
+			List<DTOStudent> stus = query.getResultList();
+			em.getTransaction().commit();
+			return stus;
+		} catch (Exception e) {
+			System.out.println(e);
+		}
+		return null;
+	}
+
+	//RECUPERAR ESTUDIANTES POR CIUDAD SEGÚN CARRERA
+	@Override
+	public List<DTOStudent> getStudentsByCareerCity(Career car, String city) {
+		try {
+			em.getTransaction().begin();
+			// String jpql = "SELECT s FROM StudentHistory sh JOIN sh.student s WHERE
+			// sh.career = ?1 ORDER BY s.residenceCity";
+			// String jpql = "SELECT new dto.DTOStudent(CONCAT(s.names, ' ', s.lastname),
+			// s.age, s.numberOfLibrety) FROM StudentHistory sh JOIN sh.student s WHERE
+			// sh.career.idCareer = ?1 ORDER BY s.residenceCity";
+			String jpql = "SELECT new dto.DTOStudent(CONCAT(s.names, ' ', s.lastname), s.age, s.numberOfLibrety, s.residenceCity) FROM Student s JOIN s.careers c WHERE c.career = ?1 AND s.residenceCity=?2";
+			TypedQuery<DTOStudent> query = em.createQuery(jpql, DTOStudent.class);
+			query.setParameter(1, car);
+			query.setParameter(2, city);
 			List<DTOStudent> stus = query.getResultList();
 			em.getTransaction().commit();
 			return stus;

@@ -7,16 +7,18 @@ public class DTOStudentReport {
 	private long numberOfLibrety;
 	private Date inscriptionDate;
 	private Date egressDate;
+	private String city;
 	
 	public DTOStudentReport() {
 		
 	}
 	
-	public DTOStudentReport(String fullname, long numberOfLibrety, Date inscriptionDate, Date egressDate) {
+	public DTOStudentReport(String fullname, long numberOfLibrety, Date inscriptionDate, Date egressDate, String city) {
 		this.fullname = fullname;
 		this.numberOfLibrety = numberOfLibrety;
 		this.inscriptionDate = inscriptionDate;
 		this.egressDate = egressDate;
+		this.city = city;
 	}
 
 	public String getFullname() {
@@ -50,12 +52,22 @@ public class DTOStudentReport {
 	public void setEgressDate(Date egressDate) {
 		this.egressDate = egressDate;
 	}
+	
+
+	public String getCity() {
+		return city;
+	}
+
+	public void setCity(String city) {
+		this.city = city;
+	}
 
 	@Override
 	public String toString() {
-		return "\nFullname: "+this.fullname+
-				"\nNumber of librety: "+this.numberOfLibrety+
-				"\nInscription date: "+this.inscriptionDate+
-				"\nEgress date: "+this.egressDate;
+		return "[Fullname: "+this.fullname+
+				", Number of librety: "+this.numberOfLibrety+
+				", Inscription date: "+this.inscriptionDate+
+				", Egress date: "+this.egressDate+
+				", City: "+this.city+"]";
 	}
 }

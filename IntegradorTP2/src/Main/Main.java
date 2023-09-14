@@ -31,24 +31,25 @@ public class Main {
 		//MATRICULAR UN ESTUDIANTE EN UNA CARRERA
 		//carServices.insertStudentToCareer(c1, s5);
 		//carServices.insertStudentToCareer(c2, s4);
+		//carServices.insertStudentToCareer(c2, s3);
 		
-		System.out.println("RECUPERAR TODOS LOS ESTUDIANTES Y ESTABLECER UN CRITERIO DE ORDENAMIENTO SIMPLE (LASTNAME ASC)");
+		System.out.println("\nRECUPERAR TODOS LOS ESTUDIANTES Y ESTABLECER UN CRITERIO DE ORDENAMIENTO SIMPLE (LASTNAME ASC)");
 		System.out.println(stuServices.getStudentsBySimpleOrdering());
 		
-		System.out.println("RECUPERAR UN ESTUDIANTE POR NÚMERO DE LIBRETA UNIVERSITARIA");
+		System.out.println("\nRECUPERAR UN ESTUDIANTE POR NÚMERO DE LIBRETA UNIVERSITARIA");
 		System.out.println(stuServices.getStudentByNumberOfLibrety(1234));
 
-		System.out.println("RECUPERAR TODOS LOS ESTUDIANTES EN BASE A SU GÉNERO");
+		System.out.println("\nRECUPERAR TODOS LOS ESTUDIANTES EN BASE A SU GÉNERO");
 		System.out.println(stuServices.getStudentsByGenre("Male"));
 		
-		System.out.println("RECUPERAR LAS CARRERAS CON INSCRIPTOS Y ORDENAR POR CANTIDAD DE INSCRIPTOS");
+		System.out.println("\nRECUPERAR LAS CARRERAS CON INSCRIPTOS Y ORDENAR POR CANTIDAD DE INSCRIPTOS");
 		System.out.println(carServices.getCareersByNumberOfStudents());
 		
-		System.out.println("RECUPERAR ESTUDIANTES BY CARRERA");
+		System.out.println("\nRECUPERAR ESTUDIANTES BY CARRERA");
 		carServices.getReportOfCareers();
 		
-		System.out.println("RECUPERAR ESTUDIANTES POR CIUDAD SEGÚN CARRERA");
-		carServices.getStudentsByCareerCity(c2);
+		System.out.println("\nRECUPERAR ESTUDIANTES POR CIUDAD SEGÚN CARRERA");
+		stuServices.getStudentsByCareerCity(c2, "Tandil");
 		
 
 

@@ -7,10 +7,8 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.persistence.Query;
-import javax.persistence.TypedQuery;
 
 import dto.DTOCareerByStudents;
-import dto.DTOStudent;
 import dto.DTOStudentReport;
 import entity.Career;
 import entity.Student;
@@ -92,7 +90,7 @@ private EntityManager em;
 			for (Career c : career) {
 				System.out.println(c);
 				//jpql = "SELECT s FROM StudentHistory sr JOIN sr.student s WHERE sr.career.idCareer = ?1 ORDER BY sr.egressDate";
-				jpql = "SELECT new dto.DTOStudentReport(CONCAT(s.names, ' ', s.lastname), s.numberOfLibrety, sr.inscriptionDate, sr.egressDate) FROM StudentHistory sr JOIN sr.student s WHERE sr.career.idCareer = ?1 ORDER BY sr.egressDate";
+				jpql = "SELECT new dto.DTOStudentReport(CONCAT(s.names, ' ', s.lastname), s.numberOfLibrety, sr.inscriptionDate, sr.egressDate, s.residenceCity) FROM StudentHistory sr JOIN sr.student s WHERE sr.career.idCareer = ?1 ORDER BY sr.egressDate";
 				query = em.createQuery(jpql);
 				query.setParameter(1, c.getIdCareer());
 				List<DTOStudentReport> students = query.getResultList();
@@ -105,24 +103,7 @@ private EntityManager em;
 		
 	}
 	
-	//RECUPERAR ESTUDIANTES POR CIUDAD SEGÚN CARRERA
-	@Override
-	public List<DTOStudent> getStudentsByCareerCity(Career car) {
-		try {
-			em.getTransaction().begin();
-			//String jpql = "SELECT s FROM StudentHistory sh JOIN sh.student s WHERE sh.career = ?1 ORDER BY s.residenceCity";
-			//String jpql = "SELECT new dto.DTOStudent(CONCAT(s.names, ' ', s.lastname), s.age, s.numberOfLibrety) FROM StudentHistory sh JOIN sh.student s WHERE sh.career.idCareer = ?1 ORDER BY s.residenceCity";
-			String jpql = "SELECT new dto.DTOStudent(CONCAT(s.names, ' ', s.lastname), s.age, s.numberOfLibrety) FROM Student s JOIN s.careers c WHERE c.career = ?1 ORDER BY s.residenceCity";
-			TypedQuery<DTOStudent> query = em.createQuery(jpql, DTOStudent.class);
-			query.setParameter(1, car);
-			List<DTOStudent> stus = query.getResultList();
-			em.getTransaction().commit();
-			return stus;
-		} catch (Exception e) {
-			System.out.println(e);
-		}
-		return null;
-	}
+	
 
 
 }

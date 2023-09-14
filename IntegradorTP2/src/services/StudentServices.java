@@ -3,6 +3,7 @@ package services;
 import java.util.List;
 
 import dto.DTOStudent;
+import entity.Career;
 import entity.Student;
 import repositories.StudentRepositoryImpl;
 
@@ -27,4 +28,7 @@ public class StudentServices {
 		return this.impl.getStudentsByGenre(genre);
 	}
 
+	public List<DTOStudent> getStudentsByCareerCity(Career car, String city){
+		return this.impl.getStudentsByCareerCity(car, city);
+	}
 }

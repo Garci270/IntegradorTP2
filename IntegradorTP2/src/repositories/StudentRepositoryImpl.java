@@ -97,6 +97,7 @@ public class StudentRepositoryImpl implements StudentRepository {
 			query.setParameter(2, city);
 			List<DTOStudent> stus = query.getResultList();
 			em.getTransaction().commit();
+			System.out.println("Career: "+car.getName()+", City: "+city);
 			return stus;
 		} catch (Exception e) {
 			System.out.println(e);

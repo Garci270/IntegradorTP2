@@ -9,6 +9,7 @@ import javax.persistence.Persistence;
 import javax.persistence.Query;
 
 import dto.DTOCareerByStudents;
+import dto.DTOCareerByYear;
 import dto.DTOStudentReport;
 import entity.Career;
 import entity.Student;
@@ -81,7 +82,7 @@ private EntityManager em;
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public void getReportOfCareers() {
+	public void getReportOfCareersDetail() {
 		try {
 			em.getTransaction().begin();
 			String jpql = "SELECT c FROM StudentHistory sr JOIN sr.career c GROUP BY c.idCareer ORDER BY c.name";
@@ -100,6 +101,23 @@ private EntityManager em;
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
+		
+	}
+	
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<DTOCareerByYear> getReportOfCareers() {
+		try {
+			em.getTransaction().begin();
+			String jpql = "SELECT new dto.DTOCareerByYear(c.name, COUNT(sr.inscriptionDate), COUNT(sr.egressDate), year(sr.inscriptionDate)) FROM StudentHistory sr JOIN sr.career c GROUP BY c.name, year(sr.inscriptionDate) ORDER BY c.name, year(sr.egressDate)";
+			Query query = em.createQuery(jpql);
+			List<DTOCareerByYear> career = query.getResultList();
+			em.getTransaction().commit();
+			return career;
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		return null;
 		
 	}
 	

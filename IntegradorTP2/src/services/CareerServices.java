@@ -3,6 +3,7 @@ package services;
 import java.util.List;
 
 import dto.DTOCareerByStudents;
+import dto.DTOCareerByYear;
 import entity.Career;
 import entity.Student;
 import repositories.CareerRepositoryImpl;
@@ -23,8 +24,12 @@ public class CareerServices {
 	public List<DTOCareerByStudents> getCareersByNumberOfStudents(){
 		return this.impl.getCareersByNumberOfStudents();
 	}
-	public void getReportOfCareers() {
-		this.impl.getReportOfCareers();
+	public void getReportOfCareersDetail() {
+		this.impl.getReportOfCareersDetail();
+	}
+	
+	public List<DTOCareerByYear> getReportOfCareers() {
+		return this.impl.getReportOfCareers();
 	}
 	
 }

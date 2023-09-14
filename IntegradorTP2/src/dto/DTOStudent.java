@@ -53,8 +53,8 @@ public class DTOStudent {
 	@Override
 	public String toString() {
 		return "\n [Fullname: "+this.fullname+
-				", Age:"+this.age+
+				", Age: "+this.age+
 				", Number of librety: "+this.numberOfLibrety +
-				", City:"+this.city+"]";
+				", City: "+this.city+"]";
 	}
 }

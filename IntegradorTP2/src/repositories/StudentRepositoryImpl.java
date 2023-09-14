@@ -3,6 +3,8 @@ package repositories;
 import java.util.List;
 
 import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
 import javax.persistence.TypedQuery;
 
 import dto.DTOStudent;
@@ -12,8 +14,9 @@ public class StudentRepositoryImpl implements StudentRepository {
 	
 	private EntityManager em;
 	
-	public StudentRepositoryImpl(EntityManager em) {
-		this.em = em;
+	public StudentRepositoryImpl() {
+		EntityManagerFactory emf = Persistence.createEntityManagerFactory("Arquitectura");
+		this.em = emf.createEntityManager();
 	}
 
 	//DAR DE ALTA UN ESTUDIANTE

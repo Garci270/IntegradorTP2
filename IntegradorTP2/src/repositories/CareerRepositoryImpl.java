@@ -4,6 +4,8 @@ import java.sql.Date;
 import java.util.List;
 
 import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
 import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 
@@ -18,9 +20,9 @@ public class CareerRepositoryImpl implements CareerRepository {
 	
 private EntityManager em;
 	
-	public CareerRepositoryImpl(EntityManager em) {
-		//crear em en constructor y no cerrar conexión
-		this.em = em;
+	public CareerRepositoryImpl() {
+		EntityManagerFactory emf = Persistence.createEntityManagerFactory("Arquitectura");
+		this.em = emf.createEntityManager();
 	}
 
 	@Override

@@ -2,6 +2,7 @@ package entity;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -47,6 +48,18 @@ public class Career {
 	}
 	
 	
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Career other = (Career) obj;
+		return Objects.equals(name, other.name);
+	}
+
 	@Override
 	public String toString() {
 		return "\nCareer: "+name;

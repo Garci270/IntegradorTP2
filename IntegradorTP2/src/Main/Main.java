@@ -48,8 +48,8 @@ public class Main {
 		System.out.println("\nRECUPERAR ESTUDIANTES BY CARRERA");
 		carServices.getReportOfCareers();
 		
-		System.out.println("\nRECUPERAR ESTUDIANTES POR CIUDAD SEGÚN CARRERA");
-		stuServices.getStudentsByCareerCity(c2, "Tandil");
+		System.out.println("\nRECUPERAR LOS ESTUDIANTES DE UNA DETERMINADA CARRERA, FILTRADO POR CIUDAD DE RESIDENCIA");
+		System.out.println(stuServices.getStudentsByCareerCity(c2, "Tandil"));
 		
 
 

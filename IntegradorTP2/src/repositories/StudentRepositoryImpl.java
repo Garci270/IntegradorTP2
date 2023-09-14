@@ -86,16 +86,11 @@ public class StudentRepositoryImpl implements StudentRepository {
 		return null;
 	}
 
-	//RECUPERAR ESTUDIANTES POR CIUDAD SEGÚN CARRERA
+	//RECUPERAR LOS ESTUDIANTES DE UNA DETERMINADA CARRERA, FILTRADO POR CIUDAD DE RESIDENCIA
 	@Override
 	public List<DTOStudent> getStudentsByCareerCity(Career car, String city) {
 		try {
 			em.getTransaction().begin();
-			// String jpql = "SELECT s FROM StudentHistory sh JOIN sh.student s WHERE
-			// sh.career = ?1 ORDER BY s.residenceCity";
-			// String jpql = "SELECT new dto.DTOStudent(CONCAT(s.names, ' ', s.lastname),
-			// s.age, s.numberOfLibrety) FROM StudentHistory sh JOIN sh.student s WHERE
-			// sh.career.idCareer = ?1 ORDER BY s.residenceCity";
 			String jpql = "SELECT new dto.DTOStudent(CONCAT(s.names, ' ', s.lastname), s.age, s.numberOfLibrety, s.residenceCity) FROM Student s JOIN s.careers c WHERE c.career = ?1 AND s.residenceCity=?2";
 			TypedQuery<DTOStudent> query = em.createQuery(jpql, DTOStudent.class);
 			query.setParameter(1, car);

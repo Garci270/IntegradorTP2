@@ -12,19 +12,19 @@ import javax.persistence.OneToMany;
 public class Student {
 	@Id
 	private int idStudent;
-	@Column
+	@Column(nullable=false)
 	private String names;
-	@Column
+	@Column(nullable=false)
 	private String lastname;
-	@Column
+	@Column(nullable=false)
 	private int age;
-	@Column
+	@Column(nullable=false)
 	private String genre;
-	@Column
+	@Column(nullable=false)
 	private long dni;
-	@Column
+	@Column(nullable=false)
 	private long numberOfLibrety;
-	@Column
+	@Column(nullable=false)
 	private String residenceCity;
 	@OneToMany(mappedBy = "student")
 	private List<StudentHistory> careers;

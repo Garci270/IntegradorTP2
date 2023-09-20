@@ -103,6 +103,16 @@ public class Student {
 	}
 	
 	@Override
+	public boolean equals(Object obj) {
+		try {
+			Student otro = (Student) obj;
+			return this.getIdStudent() == otro.getIdStudent();
+		} catch (Exception e) {
+			return false;
+		}
+	}
+	
+	@Override
 	public String toString() {
 		return "\nName: "+this.names+
 				"\nLastname: "+this.lastname+

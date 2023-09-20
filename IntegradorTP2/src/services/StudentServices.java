@@ -8,10 +8,18 @@ import entity.Student;
 import repositories.StudentRepositoryImpl;
 
 public class StudentServices {
+	private static StudentServices instance;
 	private StudentRepositoryImpl impl;
 	
-	public StudentServices() {
-		 this.impl = new StudentRepositoryImpl();
+	private StudentServices() {
+		 this.impl = StudentRepositoryImpl.getInstance();
+	}
+	
+	public static StudentServices getInstance() {
+		if (instance == null) {
+			instance = new StudentServices();
+		}
+		return instance;
 	}
 	
 	public void insertStudent(Student student) {

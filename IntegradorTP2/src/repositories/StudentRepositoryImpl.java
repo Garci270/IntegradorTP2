@@ -12,12 +12,19 @@ import entity.Career;
 import entity.Student;
 
 public class StudentRepositoryImpl implements StudentRepository {
-
+	private static StudentRepositoryImpl instance;
 	private EntityManager em;
 
-	public StudentRepositoryImpl() {
+	private StudentRepositoryImpl() {
 		EntityManagerFactory emf = Persistence.createEntityManagerFactory("Arquitectura");
 		this.em = emf.createEntityManager();
+	}
+	
+	public static StudentRepositoryImpl getInstance() {
+		if (instance == null) {
+			instance = new StudentRepositoryImpl();
+		}
+		return instance;
 	}
 
 	// DAR DE ALTA UN ESTUDIANTE

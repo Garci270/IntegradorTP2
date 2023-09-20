@@ -15,25 +15,33 @@ public class Main {
 		Student s4 = new Student(4,"Juan", "Martinez", 26, "Male", 54215614,3214, "Bragado");
 		Student s5 = new Student(5,"Martin", "Gimenez", 20, "Male", 5423156,3156, "Loberia");
 		Student s6 = new Student(6,"Paula", "Gimenez", 30, "Female", 32584617,6453, "Tandil");
-		StudentServices stuServices = new StudentServices();
+		StudentServices stuServices = StudentServices.getInstance();
 		
 		//2A) DAR DE ALTA UN ESTUDIANTE
-		//stuServices.insertStudent(s1);
-		//stuServices.insertStudent(s2);
-		//stuServices.insertStudent(s3);
-		//stuServices.insertStudent(s4);
-		//stuServices.insertStudent(s5);
-		//stuServices.insertStudent(s6);
+		stuServices.insertStudent(s1);
+		stuServices.insertStudent(s2);
+		stuServices.insertStudent(s3);
+		stuServices.insertStudent(s4);
+		stuServices.insertStudent(s5);
+		stuServices.insertStudent(s6);
 		Career c1 = new Career(1,"Tudai");
 		Career c2 = new Career(2,"Sistemas");
-		CareerServices carServices = new CareerServices();
-		//carServices.insertCareer(c1);
-		//carServices.insertCareer(c2);
+		CareerServices carServices = CareerServices.getInstance();
+		carServices.insertCareer(c1);
+		carServices.insertCareer(c2);
 		
 		//2B) MATRICULAR UN ESTUDIANTE EN UNA CARRERA
-		//carServices.insertStudentToCareer(c1, s5);
-		//carServices.insertStudentToCareer(c2, s4);
-		//carServices.insertStudentToCareer(c2, s3);
+		carServices.insertStudentToCareer(c1, s1);
+		carServices.insertStudentToCareer(c2, s2);
+		carServices.insertStudentToCareer(c2, s3);
+		carServices.insertStudentToCareer(c2, s4);
+		carServices.insertStudentToCareer(c1, s5);
+		carServices.insertStudentToCareer(c2, s6);
+		
+		//GRADUA ESTUDIANTES COMO EJEMPLO
+		carServices.graduateStudent(s1, c1);
+		carServices.graduateStudent(s2, c2);
+		carServices.graduateStudent(s6, c2);
 		
 		System.out.println("\n2C) RECUPERAR TODOS LOS ESTUDIANTES Y ESTABLECER UN CRITERIO DE ORDENAMIENTO SIMPLE (LASTNAME ASC)");
 		System.out.println(stuServices.getStudentsBySimpleOrdering());

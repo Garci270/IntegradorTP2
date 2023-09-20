@@ -1,6 +1,5 @@
 package repositories;
 
-import java.sql.Date;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -12,16 +11,21 @@ import dto.DTOCareerByStudents;
 import dto.DTOCareerByYear;
 import dto.DTOStudentReport;
 import entity.Career;
-import entity.Student;
-import entity.StudentHistory;
 
 public class CareerRepositoryImpl implements CareerRepository {
+	private static CareerRepositoryImpl instance;
+	private EntityManager em;
 	
-private EntityManager em;
-	
-	public CareerRepositoryImpl() {
+	private CareerRepositoryImpl() {
 		EntityManagerFactory emf = Persistence.createEntityManagerFactory("Arquitectura");
 		this.em = emf.createEntityManager();
+	}
+	
+	public static CareerRepositoryImpl getInstance() {
+		if (instance == null) {
+			instance = new CareerRepositoryImpl();
+		}
+		return instance;
 	}
 
 	@Override
@@ -38,25 +42,6 @@ private EntityManager em;
 			System.out.println(e);
 		}
 		
-	}
-	
-	@Override
-	public void insertStudentToCareer(Career career, Student student) {
-		long miliSeconds = System.currentTimeMillis();
-		Date date = new Date(miliSeconds);
-		StudentHistory studentHistory = new StudentHistory(student, career,date,null , false);
-		try {
-			em.getTransaction().begin();
-			if(!em.contains(studentHistory)) {
-				em.persist(studentHistory);
-			}else {
-				em.merge(studentHistory);
-			}
-			em.getTransaction().commit();
-		} catch (Exception e) {
-			System.out.println(e);
-		}
-
 	}
 
 	@Override

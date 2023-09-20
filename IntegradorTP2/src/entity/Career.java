@@ -47,18 +47,26 @@ public class Career {
 		return students;
 	}
 	
-	
 	@Override
 	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
+		try {
+			Career otro = (Career) obj;
+			return this.getIdCareer() == otro.getIdCareer();
+		} catch (Exception e) {
 			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Career other = (Career) obj;
-		return Objects.equals(name, other.name);
+		}
 	}
+//	@Override
+//	public boolean equals(Object obj) {
+//		if (this == obj)
+//			return true;
+//		if (obj == null)
+//			return false;
+//		if (getClass() != obj.getClass())
+//			return false;
+//		Career other = (Career) obj;
+//		return Objects.equals(name, other.name);
+//	}
 
 	@Override
 	public String toString() {

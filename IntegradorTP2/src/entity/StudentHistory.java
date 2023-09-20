@@ -25,8 +25,6 @@ public class StudentHistory implements Serializable {
 	private Date inscriptionDate;
 	@Column(nullable = true)
 	private Date egressDate;
-	@Column
-	private boolean graduate;
 	
 	public StudentHistory() {
 		// TODO Auto-generated constructor stub
@@ -38,7 +36,22 @@ public class StudentHistory implements Serializable {
 		this.career = career;
 		this.inscriptionDate = inscriptionDate;
 		this.egressDate = egressDate;
-		this.graduate = graduate;
+	}
+
+	public Date getInscriptionDate() {
+		return inscriptionDate;
+	}
+
+	public void setInscriptionDate(Date inscriptionDate) {
+		this.inscriptionDate = inscriptionDate;
+	}
+
+	public Date getEgressDate() {
+		return egressDate;
+	}
+
+	public void setEgressDate(Date egressDate) {
+		this.egressDate = egressDate;
 	}
 
 	public Student getStudent() {
@@ -64,15 +77,16 @@ public class StudentHistory implements Serializable {
 	public void setInscription(Date inscriptionDate) {
 		this.inscriptionDate = inscriptionDate;
 	}
-
-	public boolean isGraduate() {
-		return graduate;
+	
+	@Override
+	public boolean equals(Object obj) {
+		try {
+			StudentHistory otro = (StudentHistory) obj;
+			return this.getStudent().equals(otro.getStudent()) && this.getCareer().equals(otro.getCareer());
+		} catch (Exception e) {
+			return false;
+		}
 	}
-
-	public void setGraduate(boolean graduate) {
-		this.graduate = graduate;
-	}
-
 	
 	@Override
 	public int hashCode() {

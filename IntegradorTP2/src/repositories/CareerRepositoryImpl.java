@@ -9,7 +9,6 @@ import javax.persistence.Query;
 
 import dto.DTOCareerByStudents;
 import dto.DTOCareerByYear;
-import dto.DTOStudentReport;
 import entity.Career;
 
 public class CareerRepositoryImpl implements CareerRepository {
@@ -64,30 +63,6 @@ public class CareerRepositoryImpl implements CareerRepository {
 		}
 		return null;
 	}
-
-	@SuppressWarnings("unchecked")
-	@Override
-	public void getReportOfCareersDetail() {
-		try {
-			em.getTransaction().begin();
-			String jpql = "SELECT c FROM StudentHistory sr JOIN sr.career c GROUP BY c.idCareer ORDER BY c.name";
-			Query query = em.createQuery(jpql);
-			List<Career> career = query.getResultList();
-			for (Career c : career) {
-				System.out.println(c);
-				//jpql = "SELECT s FROM StudentHistory sr JOIN sr.student s WHERE sr.career.idCareer = ?1 ORDER BY sr.egressDate";
-				jpql = "SELECT new dto.DTOStudentReport(CONCAT(s.names, ' ', s.lastname), s.numberOfLibrety, sr.inscriptionDate, sr.egressDate, s.residenceCity) FROM StudentHistory sr JOIN sr.student s WHERE sr.career.idCareer = ?1 ORDER BY sr.egressDate";
-				query = em.createQuery(jpql);
-				query.setParameter(1, c.getIdCareer());
-				List<DTOStudentReport> students = query.getResultList();
-				students.forEach(s -> System.out.println(s));
-			}
-			em.getTransaction().commit();
-		} catch (Exception e) {
-			// TODO: handle exception
-		}
-		
-	}
 	
 	@SuppressWarnings("unchecked")
 	@Override
@@ -100,13 +75,9 @@ public class CareerRepositoryImpl implements CareerRepository {
 			em.getTransaction().commit();
 			return career;
 		} catch (Exception e) {
-			// TODO: handle exception
+			System.out.println(e);
 		}
 		return null;
 		
 	}
-	
-	
-
-
 }

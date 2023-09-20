@@ -18,30 +18,30 @@ public class Main {
 		StudentServices stuServices = StudentServices.getInstance();
 		
 		//2A) DAR DE ALTA UN ESTUDIANTE
-		stuServices.insertStudent(s1);
-		stuServices.insertStudent(s2);
-		stuServices.insertStudent(s3);
-		stuServices.insertStudent(s4);
-		stuServices.insertStudent(s5);
-		stuServices.insertStudent(s6);
+//		stuServices.insertStudent(s1);
+//		stuServices.insertStudent(s2);
+//		stuServices.insertStudent(s3);
+//		stuServices.insertStudent(s4);
+//		stuServices.insertStudent(s5);
+//		stuServices.insertStudent(s6);
 		Career c1 = new Career(1,"Tudai");
 		Career c2 = new Career(2,"Sistemas");
 		CareerServices carServices = CareerServices.getInstance();
-		carServices.insertCareer(c1);
-		carServices.insertCareer(c2);
+//		carServices.insertCareer(c1);
+//		carServices.insertCareer(c2);
 		
 		//2B) MATRICULAR UN ESTUDIANTE EN UNA CARRERA
-		carServices.insertStudentToCareer(c1, s1);
-		carServices.insertStudentToCareer(c2, s2);
-		carServices.insertStudentToCareer(c2, s3);
-		carServices.insertStudentToCareer(c2, s4);
-		carServices.insertStudentToCareer(c1, s5);
-		carServices.insertStudentToCareer(c2, s6);
+//		carServices.insertStudentToCareer(c1, s1);
+//		carServices.insertStudentToCareer(c2, s2);
+//		carServices.insertStudentToCareer(c2, s3);
+//		carServices.insertStudentToCareer(c2, s4);
+//		carServices.insertStudentToCareer(c1, s5);
+//		carServices.insertStudentToCareer(c2, s6);
 		
 		//GRADUA ESTUDIANTES COMO EJEMPLO
-		carServices.graduateStudent(s1, c1);
-		carServices.graduateStudent(s2, c2);
-		carServices.graduateStudent(s6, c2);
+//		carServices.graduateStudent(s1, c1);
+//		carServices.graduateStudent(s2, c2);
+//		carServices.graduateStudent(s6, c2);
 		
 		System.out.println("\n2C) RECUPERAR TODOS LOS ESTUDIANTES Y ESTABLECER UN CRITERIO DE ORDENAMIENTO SIMPLE (LASTNAME ASC)");
 		System.out.println(stuServices.getStudentsBySimpleOrdering());
@@ -63,12 +63,6 @@ public class Main {
 				+ "los años de manera cronológica.");
 		System.out.println("\n3) REPORTE POR CARRERA POR AÑO COMPACTO"); 
 		System.out.println(carServices.getReportOfCareers());
-		
-		System.out.println("\n3) REPORTE POR CARRERA POR AÑO DETALLADO"); 
-		carServices.getReportOfCareersDetail();
-		
-
-
 	}
 
 }

@@ -10,7 +10,5 @@ public interface CareerRepository {
 	
 	public void insertCareer(Career career);
 	public List<DTOCareerByStudents> getCareersByNumberOfStudents();
-	public void getReportOfCareersDetail();
 	public List<DTOCareerByYear> getReportOfCareers();
-
 }

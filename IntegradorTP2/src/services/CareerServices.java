@@ -38,10 +38,6 @@ public class CareerServices {
 	public List<DTOCareerByStudents> getCareersByNumberOfStudents(){
 		return this.impl.getCareersByNumberOfStudents();
 	}
-	public void getReportOfCareersDetail() {
-		this.impl.getReportOfCareersDetail();
-	}
-	
 	public List<DTOCareerByYear> getReportOfCareers() {
 		return this.impl.getReportOfCareers();
 	}

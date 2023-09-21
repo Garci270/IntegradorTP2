@@ -69,7 +69,7 @@ public class CareerRepositoryImpl implements CareerRepository {
 	public List<DTOCareerByYear> getReportOfCareers() {
 		try {
 			em.getTransaction().begin();
-			String jpql = "SELECT new dto.DTOCareerByYear(c.name, COUNT(sr.inscriptionDate), COUNT(sr.egressDate), year(sr.inscriptionDate)) FROM StudentHistory sr JOIN sr.career c GROUP BY c.name, year(sr.inscriptionDate) ORDER BY c.name, year(sr.inscriptionDate)";
+			String jpql = "SELECT new dto.DTOCareerByYear(c.idCareer, c.name, COUNT(sr.inscriptionDate), COUNT(sr.egressDate), year(sr.inscriptionDate)) FROM StudentHistory sr JOIN sr.career c GROUP BY c.idCareer, c.name, year(sr.inscriptionDate) ORDER BY c.name, year(sr.inscriptionDate)";
 			Query query = em.createQuery(jpql);
 			List<DTOCareerByYear> career = query.getResultList();
 			em.getTransaction().commit();

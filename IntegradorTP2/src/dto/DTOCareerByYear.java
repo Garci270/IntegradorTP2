@@ -1,17 +1,23 @@
 package dto;
 
 public class DTOCareerByYear {
+	private int idCareer;
 	private String name;
 	private long amountEnrolled;
 	private long amountGraduated;
 	private int year;
 
-	public DTOCareerByYear(String name, long amountEnrolled, long amountGraduated, int year) {
+	public DTOCareerByYear(int idCareer, String name, long amountEnrolled, long amountGraduated, int year) {
 		super();
+		this.idCareer = idCareer;
 		this.name = name;
 		this.amountEnrolled = amountEnrolled;
 		this.amountGraduated = amountGraduated;
 		this.year = year;
+	}
+
+	public int getIdCareer() {
+		return idCareer;
 	}
 
 	public String getName() {
@@ -48,7 +54,7 @@ public class DTOCareerByYear {
 
 	@Override
 	public String toString() {
-		return "\n[Career=" + name + ", year=" + year + ", amountEnrolled=" + amountEnrolled + ", amountGraduated="
+		return "\n[idCareer=" + idCareer + " Career=" + name + ", year=" + year + ", amountEnrolled=" + amountEnrolled + ", amountGraduated="
 				+ amountGraduated + "]";
 	}
 
